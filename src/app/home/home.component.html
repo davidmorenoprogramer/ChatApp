@@ -1,0 +1,76 @@
+<div class="chat-app-container">
+
+    <div class="contactsAndMenu">
+      <mat-toolbar  class="chat-header">
+        <span class="apptitle">Chat App</span>
+        <!-- Espacio flexible para alinear el contenido -->
+        <div class="logout-button" >
+          <button class="buttonconfig" [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="mat-menu-panel">
+              <button mat-menu-item>
+                  <mat-icon class="icon">settings</mat-icon>
+                  <span class="menuItemText">Settings</span>
+              </button>
+            <button mat-menu-item (click)="Logout()">
+              <mat-icon class="icon">exit_to_app</mat-icon>
+              <span class="menuItemText">Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+       <!-- search -->
+      <mat-form-field class="search">
+        <input matInput placeholder="buscar constactos" [formControl]="searchControl"/>
+      </mat-form-field>
+       <!-- contactos -->
+      <div class="scrollcontactos">
+        <mat-list class="listaContactos">
+          <mat-list-item *ngFor="let user of users$ | async" class="contact-item">
+            <div class="contact-content">
+              <img [src]="'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='" alt="Profile Image" class="imagen" />
+              <h4 class="name">{{ user?.displayName }}</h4>
+            </div>
+          </mat-list-item>
+        </mat-list>
+
+      </div>
+      
+
+    </div>
+    <div class="chat-section">
+      <!-- Sección de chat -->
+      <div class="chat-body">
+        <div *ngIf="selectedContact">
+          <!-- Mensajes recibidos -->
+          <div class="message received" *ngFor="let message of receivedMessages">
+            <div class="message-content">
+              <span>{{ message }}</span>
+            </div>
+          </div>
+          <!-- Mensajes enviados -->
+          <div class="message sent" *ngFor="let message of sentMessages">
+            <div class="message-content">
+              <span>{{ message }}</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!selectedContact" class="no-contact-selected">
+          Select a contact to start chatting
+        </div>
+      </div>
+      <!-- Barra de entrada de mensaje -->
+      <div class="chat-footer" *ngIf="selectedContact">
+        <mat-form-field class="message-input" appearance="outline">
+          <mat-label>Type a message</mat-label>
+          <input matInput [(ngModel)]="message" (keyup.enter)="sendMessage()">
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="sendMessage()">
+          <mat-icon>send</mat-icon>
+        </button>
+    </div>
+  </div>
+    
+</div>
+  

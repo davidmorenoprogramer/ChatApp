@@ -1,0 +1,76 @@
+
+body{background-color: #007bff;}
+.registro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif; 
+    
+  }
+  .registro{
+    
+    text-align: left;
+    margin-top: 20px;
+    color: #007bff;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif; }
+.registro1{
+    
+        text-align: left;
+        margin-top: 20px;
+        
+        font-size: 12px;
+        cursor: pointer;
+        font-family: 'Roboto', sans-serif; 
+  }
+  .registro-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .registro-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: calc(100% - 16px); /* Ajusta el ancho para dejar espacio para padding */
+    padding: 8px;
+    margin: 0 auto; /* Centra horizontalmente el input */
+    display: block; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif; 
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

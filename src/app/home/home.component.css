@@ -1,0 +1,246 @@
+
+
+.chat-app-container {
+    
+    display: flex;
+    flex-direction:row;
+    height: 100%;
+    
+    border-right: 1px solid #ccc;
+    overflow: hidden;
+    
+   
+  }
+
+  /* Caja de los contactos a la izquierda y la caja del chat a la derecha*/
+  .contactsAndMenu{
+
+    
+    height: 100%;
+    width: 30%;
+    margin-top: 0px;
+    
+    
+  }
+
+  .chat-section {
+    
+    width: 100%;
+    background-color: antiquewhite;
+  }
+
+  /* #############################################*/
+
+  .logout-button {
+    display: flex;
+    align-items: center;
+  }
+  
+  .buttonconfig {
+    background: none;
+    border: none;
+  }
+  
+  .search {
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    
+    margin-top: 0px;
+    align-items: center;
+    position: relative;
+  }
+  mat-list {
+    padding: 0;
+  }
+  
+  mat-list-item {
+    
+    display: flex;
+    padding: 8px 16px;
+    border-bottom: 1px solid #ccc;
+    flex-direction: row;
+    
+  }
+ 
+  .contact-content {
+    display: flex; /* Asegura que los elementos hijos se alineen horizontalmente */
+    width: 100%; /* Ajusta el ancho del contenedor al 100% del ancho disponible */
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+ 
+
+  .name{
+    -webkit-user-drag: none;
+    width: 100%; /* Ajusta el ancho para que el contenido ocupe el espacio restante */
+    height: 100%; /* Ajusta la altura al 100% del contenedor */
+    margin-top:8%;
+    display: flex;
+    align-items: center; /* Centra verticalmente el texto */
+    justify-content: left; /* Centra horizontalmente el texto */
+    margin-left: 5px;
+    font-size: 12px;
+  }
+  .imagen{
+    -webkit-user-drag: none;
+    display: flex;
+    width: 50px;
+    height: 50px; /* Ajusta la altura al 100% del contenedor */
+    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center; /* Centra el contenido horizontalmente */
+  }
+
+  .logout-button:hover {
+    color: #555;
+    
+  }
+  
+  .buttonconfig:focus {
+    outline: none;
+  }
+  
+  .mat-menu-panel {
+    width: auto; 
+    max-width: 200px; 
+    min-width: 100px; 
+    max-height: 80vh; 
+    overflow-y: auto; 
+    position: absolute; 
+    right: 0; 
+    
+    font-size: 10px; 
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    
+  }
+  .mat-menu-panel.show {
+    opacity: 1; 
+  }
+  .mat-menu-item {
+    padding: 8px 16px; 
+    display: flex; 
+    align-items: center;
+    transition: background-color 0.3s ease; 
+    font-size: 10px;
+  }
+
+  .mat-menu-item:hover {
+    background-color: #f0f0f0; 
+  }
+  .contact-item:hover{
+    background-color: #f0f0f0; 
+  }
+  .icon {
+    margin-right: 30px;
+    transform: scale(0.8);
+    margin-top: 4px;
+  }
+ 
+
+  .chat-header {
+    position: relative;
+    width: 100%;
+    height: 12%;
+    display: flex;
+    background-color: #3f51b5;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+  
+  .chat-content {
+    display: flex;
+    flex: 1;
+    
+  }
+  
+
+  .listaContactos{
+    
+    margin-top: 0px;
+    
+    
+  }
+  .scrollcontactos{
+    margin-top: 0px;
+    overflow-y: hidden;
+    height: 100%;
+    overflow-y: scroll;
+    
+  }
+  .scrollcontactos::-webkit-scrollbar {
+    display: none;
+  }
+
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  .chat-body {
+    
+    top: 0;
+    flex: 1;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+    
+    
+  }
+  
+  .message {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .message.received .message-content {
+    background-color: #e0e0e0;
+    color: #000;
+    align-self: flex-start;
+    border-radius: 10px 10px 10px 0;
+  }
+  
+  .message.sent .message-content {
+    background-color: #0b93f6;
+    color: #fff;
+    align-self: flex-end;
+    border-radius: 10px 10px 0 10px;
+  }
+  
+  .message-content {
+    padding: 8px;
+    max-width: 70%;
+    font-size: 10px;
+  }
+  .apptitle{font-size: 12px; flex: 1;text-align: center;}
+  .menuItemText{font-size: 10px;}
+
+
+
+  .chat-footer {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  .message-input {
+    flex: 1;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .no-contact-selected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 12px;
+    
+    color: #666;
+  }
+  
