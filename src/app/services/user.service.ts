@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { Firestore, collection, doc, setDoc, updateDoc,query, collectionData, docData } from '@angular/fire/firestore';
+import { Firestore, collection, doc, setDoc, updateDoc,query, collectionData, DocumentData ,docData } from '@angular/fire/firestore';
 import { Observable, from, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap,map } from 'rxjs/operators';
 import { ProfileUser } from '../models/user-profile';
 
 @Injectable({
@@ -11,14 +11,13 @@ import { ProfileUser } from '../models/user-profile';
 export class UserService {
   currentUser$ = authState(this.auth)
   
-
-
   constructor(private auth: Auth, private firestore:Firestore) { 
    
   }
 
 
   get CurrentUserProfile$(): Observable<ProfileUser|null> {
+    console.log("entra el user")
     return this.currentUser$.pipe(
       switchMap(user=>{
         if(!user?.uid){ //si el usuario no coincide, devuelve nulo
@@ -26,17 +25,40 @@ export class UserService {
         }
         //si coincide, devuelve los datos del usuario
         const ref = doc(this.firestore,'users' , user?.uid);
+        
+        
         return docData(ref) as Observable<ProfileUser>
       })
     )
 
   }
+  
 
   get AllUsers$(): Observable<ProfileUser[]> {
-    const ref = collection(this.firestore,'users');
-    const queryAll = query(ref);
-    return collectionData(queryAll) as Observable<ProfileUser[]>
     
+    return this.CurrentUserProfile$.pipe(
+      switchMap(currentUser => {
+        if (!currentUser) {
+          return of([]);
+        }
+
+        const ref = collection(this.firestore, 'users');
+        const queryAll = query(ref);
+
+        return collectionData(queryAll, { idField: 'uid' }).pipe(
+          map((data: DocumentData[]) => {
+            // Asegúrate de que el tipo sea ProfileUser
+            const users: ProfileUser[] = data.map((item: any) => ({
+              uid: item.uid,
+              displayName: item.displayName
+              // Agrega otros campos si es necesario
+            }));
+
+            return users.filter(user => user.uid !== currentUser.uid);
+          })
+        );
+      })
+    );
   }
   
 

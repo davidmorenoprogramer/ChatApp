@@ -26,9 +26,9 @@
       </mat-form-field>
        <!-- contactos -->
       <div class="scrollcontactos">
-        <mat-list class="listaContactos">
-          <mat-list-item *ngFor="let user of users$ | async" class="contact-item">
-            <div class="contact-content">
+        <mat-list class="listaContactos" >
+          <mat-list-item  *ngFor="let user of users$ | async" class="contact-item">
+            <div class="contact-content" (click)="selectContact(user)">
               <img [src]="'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='" alt="Profile Image" class="imagen" />
               <h4 class="name">{{ user?.displayName }}</h4>
             </div>
@@ -64,9 +64,9 @@
       <div class="chat-footer" *ngIf="selectedContact">
         <mat-form-field class="message-input" appearance="outline">
           <mat-label>Type a message</mat-label>
-          <input matInput [(ngModel)]="message" (keyup.enter)="sendMessage()">
+          <input matInput [(ngModel)]="message" (keyup.enter)="sendMessage(selectedContact)">
         </mat-form-field>
-        <button mat-icon-button color="primary" (click)="sendMessage()">
+        <button mat-icon-button color="primary" (click)="sendMessage(selectedContact)">
           <mat-icon>send</mat-icon>
         </button>
     </div>
