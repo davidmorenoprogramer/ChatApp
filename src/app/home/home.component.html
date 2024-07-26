@@ -22,17 +22,28 @@
       </mat-toolbar>
        <!-- search -->
       <mat-form-field class="search">
-        <input matInput placeholder="buscar constactos" [formControl]="searchControl"/>
+        <input matInput placeholder="buscar constactos" [formControl]="searchControl" [matAutocomplete]="users"/>
       </mat-form-field>
-       <!-- contactos -->
+      <mat-autocomplete #users="matAutocomplete">
+        <mat-option *ngFor="let user of users$ | async" (click)= "createChat(user)" >{{ user?.displayName }}</mat-option>
+      </mat-autocomplete>
+
+       <!-- Chats Activos-->
       <div class="scrollcontactos">
-        <mat-list class="listaContactos" >
-          <mat-list-item  *ngFor="let user of users$ | async" class="contact-item">
-            <div class="contact-content" (click)="selectContact(user)">
-              <img [src]="'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='" alt="Profile Image" class="imagen" />
-              <h4 class="name">{{ user?.displayName }}</h4>
+        <mat-list class="listaContactos">
+          <div  *ngFor="let chat of myChats$ | async" class="contact-item" style="height: 40px;">
+            <div>
+              <mat-icon class="avatar">person</mat-icon>
             </div>
-          </mat-list-item>
+            <div class="messageColum">
+              <div class="chat-info">
+                <mat-card-title>{{ chat.chatName }}</mat-card-title>
+                <mat-card-subtitle >{{ chat.lastMessageDate}}</mat-card-subtitle>
+              </div>
+            
+              <p class="messageContact">{{ chat.lastMessage }}</p>
+            </div>
+          </div>
         </mat-list>
 
       </div>
@@ -64,9 +75,9 @@
       <div class="chat-footer" *ngIf="selectedContact">
         <mat-form-field class="message-input" appearance="outline">
           <mat-label>Type a message</mat-label>
-          <input matInput [(ngModel)]="message" (keyup.enter)="sendMessage(selectedContact)">
+          <input matInput [(ngModel)]="message">
         </mat-form-field>
-        <button mat-icon-button color="primary" (click)="sendMessage(selectedContact)">
+        <button mat-icon-button color="primary">
           <mat-icon>send</mat-icon>
         </button>
     </div>

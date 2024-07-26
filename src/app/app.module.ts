@@ -22,12 +22,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,RegisterComponent, HomeComponent, LoginComponent
   ],
   imports: [
-    BrowserModule,AngularFireModule,MatCardModule,MatButtonModule,AngularFirestoreModule,BrowserAnimationsModule,MatMenuModule,MatListModule,MatIconModule,MatFormFieldModule,MatInputModule,MatToolbarModule,ReactiveFormsModule,FormsModule,MatDialogModule,AppRoutingModule,provideFirebaseApp(()=>initializeApp(environment.firebase)),
+    BrowserModule,MatDividerModule,AngularFireModule,MatCardModule,MatButtonModule,AngularFirestoreModule,MatAutocompleteModule,BrowserAnimationsModule,MatMenuModule,MatListModule,MatIconModule,MatFormFieldModule,MatInputModule,MatToolbarModule,ReactiveFormsModule,FormsModule,MatDialogModule,AppRoutingModule,provideFirebaseApp(()=>initializeApp(environment.firebase)),
     provideAuth(()=>getAuth()),
     provideFirestore(()=>getFirestore())
   ],

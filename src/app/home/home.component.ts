@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit{
   
   user$ = this.userService.CurrentUserProfile$;
   users$ = this.userService.AllUsers$
+  myChats$ = this.chatService.myChats$
 
   selectedContact: any = null;
   searchControl = new FormControl
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit{
   sendprueba(){
     console.log("envia")
   }
-  sendMessage(otherUser:ProfileUser){
+  createChat(otherUser:ProfileUser){
     this.chatService.createNewChat(otherUser).subscribe();
   }
 }

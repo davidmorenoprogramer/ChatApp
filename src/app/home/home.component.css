@@ -1,5 +1,6 @@
 
-
+*{ -webkit-user-drag: none; /* Para navegadores WebKit como Safari */
+  }
 .chat-app-container {
     
     display: flex;
@@ -42,12 +43,17 @@
     background: none;
     border: none;
   }
-  
+  mat-form-field{
+    height: 40px;
+  }
+  mat-autocomplete{
+    height: 20px;
+  }
   .search {
     text-align: center;
     flex-direction: column;
     width: 100%;
-    
+    font-size: 12px;
     margin-top: 0px;
     align-items: center;
     position: relative;
@@ -56,41 +62,65 @@
     padding: 0;
   }
   
-  mat-list-item {
-    
-    display: flex;
-    padding: 8px 16px;
-    border-bottom: 1px solid #ccc;
-    flex-direction: row;
-    
-  }
+
  
   .contact-content {
-    display: flex; /* Asegura que los elementos hijos se alineen horizontalmente */
-    width: 100%; /* Ajusta el ancho del contenedor al 100% del ancho disponible */
-    align-items: center; /* Centra verticalmente los elementos */
+    flex: 1;
   }
  
-
-  .name{
-
-    -webkit-user-drag: none;
-    width: 100%; /* Ajusta el ancho para que el contenido ocupe el espacio restante */
-    height: 100%; /* Ajusta la altura al 100% del contenedor */
-    margin-top:8%;
-    display: flex;
-    align-items: center; /* Centra verticalmente el texto */
-    justify-content: left; /* Centra horizontalmente el texto */
-    margin-left: 5px;
-    font-size: 12px;
+  .messageContact{
+    font-size: 8px;
+    color: rgba(0, 0, 0, 0.7);
+    display: block;
+    
+    width: 100%;
+    
   }
-  .imagen{
+  
+  mat-card-title{
+    font-size: 10px;
+    flex: 3;
+    
+    align-items: center;
+  }
+  mat-card-subtitle{
+    font-size: 6px;
+    align-items: end;
+    flex: 1;
+    
     -webkit-user-drag: none;
+  }
+  .avatar{
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    text-align: center;
+    height: auto;
+  }
+  .chat-info{
     display: flex;
-    width: 50px;
-    height: 50px; /* Ajusta la altura al 100% del contenedor */
-    align-items: center; /* Centra el contenido verticalmente */
-    justify-content: center; /* Centra el contenido horizontalmente */
+    flex-direction: row;
+   
+    width: 100%;
+    
+
+  }
+  .messageColum{
+    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+   
+  }
+  .contact-item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+    border: 1px solid #ccc;
+    
+    
   }
 
   .logout-button:hover {
@@ -142,7 +172,6 @@
   .chat-header {
     position: relative;
     width: 100%;
-    
     height: 12%;
     display: flex;
     background-color: #3f51b5;
@@ -158,10 +187,10 @@
     
   }
   
-
   .listaContactos{
-    
+    padding: 0;
     margin-top: 0px;
+    
     
     
   }
@@ -169,6 +198,7 @@
     margin-top: 0px;
     overflow-y: hidden;
     height: 100%;
+    width: 100%;
     overflow-y: scroll;
     
   }
@@ -194,6 +224,8 @@
   .message {
     display: flex;
     margin-bottom: 10px;
+    font-size: 10px;
+    width: 100%;
   }
   
   .message.received .message-content {
