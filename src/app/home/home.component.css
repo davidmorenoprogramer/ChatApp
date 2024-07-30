@@ -1,6 +1,8 @@
 
 *{ -webkit-user-drag: none; /* Para navegadores WebKit como Safari */
   }
+
+/*container global*/
 .chat-app-container {
     
     display: flex;
@@ -13,116 +15,29 @@
    
   }
 
-  /* Caja de los contactos a la izquierda y la caja del chat a la derecha*/
-  .contactsAndMenu{
+  /*div de la parte izquierda de la aplicacion*/
 
+  .contactsAndMenu{
     
     height: 100%;
     width: 30%;
     margin-top: 0px;
     
+  }
+
+  /*header del la parte izquierda*/
+  .chat-header {
     
-  }
-
-  .chat-section {
-    flex: 1; /* Permite que esta sección ocupe el espacio restante */
-    display: flex;
-    flex-direction: column; /* Organiza los elementos en columna */
-    background-color: antiquewhite;
-    
-  }
-
-  /* #############################################*/
-
-  .logout-button {
-    display: flex;
-    align-items: center;
-  }
-  
-  .buttonconfig {
-    background: none;
-    border: none;
-  }
-  mat-form-field{
-    height: 40px;
-  }
-  mat-autocomplete{
-    height: 20px;
-  }
-  .search {
-    text-align: center;
-    flex-direction: column;
-    width: 100%;
-    font-size: 12px;
-    margin-top: 0px;
-    align-items: center;
     position: relative;
-  }
-  mat-list {
-    padding: 0;
-  }
-  
-
- 
-  .contact-content {
-    flex: 1;
-  }
- 
-  .messageContact{
-    font-size: 8px;
-    color: rgba(0, 0, 0, 0.7);
-    display: block;
-    
     width: 100%;
-    
-  }
-  
-  mat-card-title{
-    font-size: 10px;
-    flex: 3;
-    
-    align-items: center;
-  }
-  mat-card-subtitle{
-    font-size: 6px;
-    align-items: end;
-    flex: 1;
-    
-    -webkit-user-drag: none;
-  }
-  .avatar{
-    height: 30px;
-    width: 30px;
-    align-items: center;
-    text-align: center;
-    height: auto;
-  }
-  .chat-info{
+    height: 12%;
     display: flex;
-    flex-direction: row;
-   
-    width: 100%;
-    
-
-  }
-  .messageColum{
-    
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+    background-color: #3f51b5;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
    
   }
-  .contact-item{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    
-    border: 1px solid #ccc;
-    
-    
-  }
-
   .logout-button:hover {
     color: #555;
     
@@ -131,7 +46,8 @@
   .buttonconfig:focus {
     outline: none;
   }
-  
+  .apptitle{font-size: 12px; flex: 1;text-align: center;}
+  .menuItemText{font-size: 10px;}
   .mat-menu-panel {
     width: auto; 
     max-width: 200px; 
@@ -167,35 +83,48 @@
     transform: scale(0.8);
     margin-top: 4px;
   }
- 
-
-  .chat-header {
-    position: relative;
-    width: 100%;
-    height: 12%;
+  .chat-section {
+    flex: 1; /* Permite que esta sección ocupe el espacio restante */
     display: flex;
-    background-color: #3f51b5;
-    color: white;
-    justify-content: space-between;
+    flex-direction: column; /* Organiza los elementos en columna */
+    background-color: f0f0f0;
+    
+  }
+  .logout-button {
+    display: flex;
     align-items: center;
-   
   }
+  .buttonconfig {
+    background: none;
+    border: none;
+  }
+  mat-form-field{
+    height: 40px;
+  }
+  mat-autocomplete{
+    height: 20px;
+  }
+
+  /* #############################################*/
+/* buscador*/
   
-  .chat-content {
-    display: flex;
-    flex: 1;
-    
-  }
-  
-  .listaContactos{
-    padding: 0;
+  .search {
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    height: 60px;
+    font-size: 12px;
     margin-top: 0px;
-    
-    
-    
+    align-items: center;
+    position: relative;
   }
-  .scrollcontactos{
-    margin-top: 0px;
+
+  /* #############################################*/
+
+  /* lista de chats activos*/
+
+  .scrollcontactos{ 
+    margin-top: -25px;
     overflow-y: hidden;
     height: 100%;
     width: 100%;
@@ -206,21 +135,180 @@
     display: none;
   }
 
+  .listaContactos{
+    padding: 0;
+    margin-top: 0px;
+
+  }
+  .contact-item{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    padding: 0;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    
+    
+  }
+  mat-list {
+    padding: 0;
+  }
+  
+  /* items dentro de la card de chats activos*/
+  .avatar{
+    height: 20px;
+    width: 20px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    
+    border-radius: 50%;
+  }
+  /*datos dentro del chat*/
+  .messageColum{
+    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    flex: 4;
+  }
+  /*el nombre y la fecha en la parte de arriba*/
+  .chat-info{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+  }
+  .nameChat{
+    
+    font-size: 10px;
+    flex: 3;
+    margin-top: 6px;
+    text-transform: uppercase;
+    height: 10px;
+  }
+  .dateChat{
+    font-size: 6px;
+    align-items: end;
+    flex: 1;
+    -webkit-user-drag: none;
+  }
+  .messageContact{
+    font-size: 8px;
+    color: rgba(0, 0, 0, 0.7);
+    
+    width: 100%;
+    height: 20px;
+    
+  }
+  
+  /*************************************************/
+
+  .chat-body {
+    
+    top: 0;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    
+  }
+
+   /*******header del chat de mensajes*******************/
+  .chat-message-header{
+    position: relative;
+    height: 25px;
+    width: 100%;
+    
+    display: flex;
+    background-color: white;
+    
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .chat-header-name{
+    color: rgb(0, 0, 0);
+    font-size: 8px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content:center;
+    margin-left: 10px;
+  }
+  .chat-area{
+    height: 85%;
+    background: #ede2ed;
+    display: flex;
+  }
+  .chat-window{
+    
+    display: flex;
+    flex: 1;
+  
+  }
+ 
+  /*footer chats*/
+  .input{
+    flex-direction: row;
+    height: 100%;
+    display: flex;
+    background-color:white ;
+    
+  }
+ 
+  .message-input {
+    height: 50px;  
+    margin-left: 20px;
+    border: none; /* Elimina el borde del input */
+    box-shadow: none;
+    outline: none;
+    display: flex;
+    flex: 5;
+
+  }
+  .sendButton{
+    display: flex;
+    flex:0;
+    margin: 0;
+    
+  }
+ 
+
+
+
+  
+
+  
+ 
+
+ 
+
+ 
+
+  .chat-content {
+    display: flex;
+    flex: 1;
+    
+  }
+  .mat-selection-list .mat-pseudo-checkbox {
+    display: none;
+    background-color: #000;
+  }
+
+
+  
   
   .spacer {
     flex: 1;
   }
   
-  .chat-body {
-    
-    top: 0;
-    flex: 1;
-    padding: 8px;
-    width: 100%;
-    
-    
-  }
   
+ 
   .message {
     display: flex;
     margin-bottom: 10px;
@@ -247,28 +335,13 @@
     max-width: 70%;
     font-size: 10px;
   }
-  .apptitle{font-size: 12px; flex: 1;text-align: center;}
-  .menuItemText{font-size: 10px;}
-
-
-
-  .chat-footer {
-    display: flex;
-    height: 80px;
-    align-items: center;
-    
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    background-color: #fff;
-    margin-bottom: 0;
-    z-index: 2;
-  }
   
-  .message-input {
-    flex: 1;
-    margin-top: 20px;
-    margin-left: 10px;
-  }
+
+
+
+ 
+  
+
 
   .mat-form-field {
     width: 100%;

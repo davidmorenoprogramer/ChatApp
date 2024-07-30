@@ -30,57 +30,51 @@
 
        <!-- Chats Activos-->
       <div class="scrollcontactos">
-        <mat-list class="listaContactos">
-          <div  *ngFor="let chat of myChats$ | async" class="contact-item" style="height: 40px;">
-            <div>
-              <mat-icon class="avatar">person</mat-icon>
-            </div>
-            <div class="messageColum">
-              <div class="chat-info">
-                <mat-card-title>{{ chat.chatName }}</mat-card-title>
-                <mat-card-subtitle >{{ chat.lastMessageDate}}</mat-card-subtitle>
+        <mat-selection-list class="listaContactos" [formControl]="chatListControl" [multiple]="false" hideSingleSelectionIndicator>
+          <mat-divider></mat-divider>
+          <mat-list-option *ngFor="let chat of myChats$ | async" class="contact-item" [value]="chat.id">
+            <div style="display: flex; flex-direction: row;  height: 100%; width: 100%;  align-items: center;" >
+              <img src="https://st2.depositphotos.com/3895623/5589/v/450/depositphotos_55896913-stock-illustration-usershirt.jpg" class="avatar">
+              <div class="messageColum">
+                <div class="chat-info">
+                  <mat-card-title class="nameChat">{{ chat.chatName }}</mat-card-title>
+                  <mat-card-subtitle class="dateChat" >{{ chat.lastMessageDate}}</mat-card-subtitle>
+                </div>
+                <p class="messageContact">{{ chat.lastMessage }}</p>
               </div>
-            
-              <p class="messageContact">{{ chat.lastMessage }}</p>
+  
+  
             </div>
-          </div>
-        </mat-list>
+  
+          
+            
+          </mat-list-option>
+        </mat-selection-list>
 
       </div>
       
-
     </div>
-    <div class="chat-section">
+    <div class="chat-section" >
       <!-- Sección de chat -->
-      <div class="chat-body">
-        <div *ngIf="selectedContact">
-          <!-- Mensajes recibidos -->
-          <div class="message received" *ngFor="let message of receivedMessages">
-            <div class="message-content">
-              <span>{{ message }}</span>
-            </div>
+      <div class="chat-body" *ngIf="selectedChat$ | async as selectedChat">
+        
+          <!-- header -->
+          <div class="chat-message-header">
+            <h2 class="chat-header-name">{{selectedChat.chatName}}</h2>
           </div>
-          <!-- Mensajes enviados -->
-          <div class="message sent" *ngFor="let message of sentMessages">
-            <div class="message-content">
-              <span>{{ message }}</span>
-            </div>
+           <!-- chat area -->
+          <div class="chat-area"></div>
+          <div class="input">
+            <input class="message-input"  placeholder="Escribe un mensaje">
+            <button class="sendButton" mat-icon-button matSuffix>
+              <mat-icon>send</mat-icon>
+            </button>
           </div>
-        </div>
-        <div *ngIf="!selectedContact" class="no-contact-selected">
-          Select a contact to start chatting
-        </div>
+          
+          
       </div>
-      <!-- Barra de entrada de mensaje -->
-      <div class="chat-footer" *ngIf="selectedContact">
-        <mat-form-field class="message-input" appearance="outline">
-          <mat-label>Type a message</mat-label>
-          <input matInput [(ngModel)]="message">
-        </mat-form-field>
-        <button mat-icon-button color="primary">
-          <mat-icon>send</mat-icon>
-        </button>
-    </div>
+      
+    
   </div>
     
 </div>
