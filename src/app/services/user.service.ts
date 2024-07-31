@@ -17,7 +17,7 @@ export class UserService {
 
 
   get CurrentUserProfile$(): Observable<ProfileUser|null> {
-    console.log("entra el user")
+    
     return this.currentUser$.pipe(
       switchMap(user=>{
         if(!user?.uid){ //si el usuario no coincide, devuelve nulo

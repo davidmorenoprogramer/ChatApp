@@ -218,6 +218,7 @@
     
   }
 
+  .chat-section{background-color: #ede2ed;}
    /*******header del chat de mensajes*******************/
   .chat-message-header{
     position: relative;
@@ -244,6 +245,7 @@
     height: 85%;
     background: #ede2ed;
     display: flex;
+    
   }
   .chat-window{
     
@@ -254,6 +256,8 @@
  
   /*footer chats*/
   .input{
+   
+    
     flex-direction: row;
     height: 100%;
     display: flex;

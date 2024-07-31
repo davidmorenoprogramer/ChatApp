@@ -42,11 +42,8 @@
                 </div>
                 <p class="messageContact">{{ chat.lastMessage }}</p>
               </div>
-  
-  
             </div>
   
-          
             
           </mat-list-option>
         </mat-selection-list>
@@ -57,16 +54,21 @@
     <div class="chat-section" >
       <!-- Sección de chat -->
       <div class="chat-body" *ngIf="selectedChat$ | async as selectedChat">
-        
+          
           <!-- header -->
           <div class="chat-message-header">
             <h2 class="chat-header-name">{{selectedChat.chatName}}</h2>
           </div>
            <!-- chat area -->
-          <div class="chat-area"></div>
+          <div class="chat-area">
+             <!-- Mensajes recibidos -->
+             <div class="message received" *ngFor="let message of messages$ | async">
+              {{ message.text }}
+          </div>
+          
           <div class="input">
-            <input class="message-input"  placeholder="Escribe un mensaje">
-            <button class="sendButton" mat-icon-button matSuffix>
+            <input matInput class="message-input"  placeholder="Escribe un mensaje"[formControl]="messageControl" (keydown.enter)="sendMessage()">
+            <button class="sendButton" mat-icon-button matSuffix (click)="sendMessage()">
               <mat-icon>send</mat-icon>
             </button>
           </div>
