@@ -245,6 +245,11 @@
     height: 85%;
     background: #ede2ed;
     display: flex;
+    flex: 1;
+    
+    align-items:flex-start;
+    overflow-y: scroll;
+    flex-direction: column;
     
   }
   .chat-window{
@@ -257,7 +262,6 @@
   /*footer chats*/
   .input{
    
-    
     flex-direction: row;
     height: 100%;
     display: flex;
@@ -282,9 +286,45 @@
     
   }
  
+  /*Chat menssage*/
 
-
-
+  .chat-bubble-container{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    
+  }
+  .chat-bubble-container.sender {
+    
+    justify-content: flex-end;
+    
+  }
+  .chat-bubble-container.sender > .chat-bubble {
+  
+    background:rgb(230, 237, 223);
+    margin-right: 10px;
+  }
+  .chat-bubble{
+    background: white;
+    font-size: 0.5rem;
+    width: fit-content;
+    border-radius: 8px;
+    position: relative;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 100px;
+    margin-left: 10px;
+    margin-bottom: 16px;
+    color:rgba(0, 0, 0, 0.7)
+  }
+  .chat-date{
+    position: absolute;
+    bottom: 10px;
+    right: 8px;
+    font-size: 0.3rem;
+    color:rgba(0, 0, 0, 0.6)
+  }
   
 
   
@@ -313,34 +353,7 @@
   
   
  
-  .message {
-    display: flex;
-    margin-bottom: 10px;
-    font-size: 10px;
-    width: 100%;
-  }
   
-  .message.received .message-content {
-    background-color: #e0e0e0;
-    color: #000;
-    align-self: flex-start;
-    border-radius: 10px 10px 10px 0;
-  }
-  
-  .message.sent .message-content {
-    background-color: #0b93f6;
-    color: #fff;
-    align-self: flex-end;
-    border-radius: 10px 10px 0 10px;
-  }
-  
-  .message-content {
-    padding: 8px;
-    max-width: 70%;
-    font-size: 10px;
-  }
-  
-
 
 
  

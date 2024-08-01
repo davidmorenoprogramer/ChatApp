@@ -46,7 +46,7 @@ addChatMessage(chatId:string, message:string):Observable<any>{
 
 getChatsMessages$(chatId:string):Observable<Message[]>{
   
-  console.log("Entra messages")
+ 
   const ref = collection(this.firestore,'chats',chatId, 'messages');
   const queryAll = query(ref,orderBy('sentDate','asc'));
   return collectionData(queryAll) as Observable<Message[]>

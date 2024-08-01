@@ -19,23 +19,23 @@ export class HomeComponent implements OnInit{
   user$ = this.userService.CurrentUserProfile$;
   users$ = this.userService.AllUsers$
   myChats$ = this.chatService.myChats$
-  chatListControl = new FormControl
+  chatListControl = new FormControl()
   searchControl = new FormControl('')
   messageControl = new FormControl('')
-  public currentChatId: string | null = null; 
+ 
 
   selectedChat$ = combineLatest([
-    this.chatListControl.valueChanges,this.myChats$
-  ]).pipe(map(([value,chats])=> chats.find((c) => c.id == value[0])))
+    this.chatListControl.valueChanges,
+    this.myChats$
+  ]).pipe(map(([value,chats]) => chats.find((c) => c.id === value[0])))
 
   
-  messages$= this.chatListControl.valueChanges.pipe(map(value => value[0])
-  ,switchMap(chatId => this.chatService.getChatsMessages$(chatId)))
+  messages$ = this.chatListControl.valueChanges.pipe(map(value => value[0])
+,switchMap(chatId => this.chatService.getChatsMessages$(chatId)))
  
  
   ngOnInit(): void {
     combineLatest([this.user$, this.users$])
-    
     
     
   }
