@@ -20,8 +20,11 @@
   .contactsAndMenu{
     
     height: 100%;
-    width: 30%;
+    width: 20%;
+    min-width: 100px;
+    max-width: 200px;
     margin-top: 0px;
+   
     
   }
 
@@ -30,12 +33,13 @@
     
     position: relative;
     width: 100%;
-    height: 12%;
+    height: 20px;
     display: flex;
+    flex-direction: row;
     background-color: #3f51b5;
     color: white;
-    justify-content: space-between;
-    align-items: center;
+    
+  
    
   }
   .logout-button:hover {
@@ -46,8 +50,17 @@
   .buttonconfig:focus {
     outline: none;
   }
-  .apptitle{font-size: 12px; flex: 1;text-align: center;}
-  .menuItemText{font-size: 10px;}
+  .apptitle{
+    font-size: 0.3rem; 
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 5px;
+    bottom: 0px;
+    height: 100%;
+    }
+  .menuItemText{font-size: 10px;
+}
   .mat-menu-panel {
     width: auto; 
     max-width: 200px; 
@@ -82,6 +95,7 @@
     margin-right: 30px;
     transform: scale(0.8);
     margin-top: 4px;
+    
   }
   .chat-section {
     flex: 1; /* Permite que esta sección ocupe el espacio restante */
@@ -92,11 +106,22 @@
   }
   .logout-button {
     display: flex;
+    position: absolute;
+    right: 4px;
+    top: 1px;
     align-items: center;
+    height: 100%;
+    width: 20px;
+    
+  }
+  .iconConfig{
+    color: rgba(0, 0, 0, 0.7);
+    transform: scale(0.4);
   }
   .buttonconfig {
     background: none;
     border: none;
+    
   }
   mat-form-field{
     height: 40px;
@@ -111,8 +136,9 @@
   .search {
     text-align: center;
     flex-direction: column;
-    width: 100%;
-    height: 60px;
+    width: 80%;
+    
+    height: 10px;
     font-size: 12px;
     margin-top: 0px;
     align-items: center;
@@ -132,24 +158,26 @@
     
   }
   .scrollcontactos::-webkit-scrollbar {
-    display: none;
+    
   }
 
   .listaContactos{
     padding: 0;
-    margin-top: 0px;
-
+    margin-top: 2px;
+    
   }
   .contact-item{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex: 1;
+    position: relative;
+    
     padding: 0;
     flex-direction: row;
-    border: 1px solid #ccc;
+    border-bottom: 0.5px solid #ccc;
     
     
+  }
+
+  .contact-item:nth-child(n){
+    height: 25px;
   }
   mat-list {
     padding: 0;
@@ -157,14 +185,12 @@
   
   /* items dentro de la card de chats activos*/
   .avatar{
-    height: 20px;
+    
     width: 20px;
-    display: flex;
-    flex: 1;
+    margin-left: 2px;
     align-items: center;
     text-align: center;
-    height: auto;
-    
+    height: 20px;
     border-radius: 50%;
   }
   /*datos dentro del chat*/
@@ -174,7 +200,8 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    flex: 4;
+    flex: 3;
+   
   }
   /*el nombre y la fecha en la parte de arriba*/
   .chat-info{
@@ -183,25 +210,31 @@
     flex: 1;
     width: 100%;
     height: 100%;
+    margin-left: 3px;
   }
   .nameChat{
     
-    font-size: 10px;
+    font-size: 0.3rem;
     flex: 3;
     margin-top: 6px;
     text-transform: uppercase;
     height: 10px;
+    color: #555;
   }
   .dateChat{
-    font-size: 6px;
+    font-size: 0.2rem;
     align-items: end;
     flex: 1;
+    position: absolute;
+    top: 0; /* Alinea el texto al borde superior del contenedor */
+    right:1px;
+    color: rgba(0, 0, 0, 0.7);
     -webkit-user-drag: none;
   }
   .messageContact{
-    font-size: 8px;
+    font-size: 0.3rem;;
     color: rgba(0, 0, 0, 0.7);
-    
+    margin-left: 3px;
     width: 100%;
     height: 20px;
     
@@ -221,28 +254,28 @@
   .chat-section{background-color: #ede2ed;}
    /*******header del chat de mensajes*******************/
   .chat-message-header{
-    position: relative;
-    height: 25px;
+    position:relative;
+    height: 20px;
     width: 100%;
-    
     display: flex;
-    background-color: white;
-    
+    background-color:whitesmoke ;
     flex: 1;
+    
     justify-content: space-between;
     align-items: center;
   }
   .chat-header-name{
-    color: rgb(0, 0, 0);
-    font-size: 8px;
+    
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.4rem;
     width: 100%;
     height: 100%;
     align-items: center;
     justify-content:center;
-    margin-left: 10px;
+    margin-left: 40px;
   }
   .chat-area{
-    height: 85%;
+    height: 80%;
     background: #ede2ed;
     display: flex;
     flex: 1;
@@ -261,36 +294,44 @@
  
   /*footer chats*/
   .input{
-   
-    flex-direction: row;
-    height: 100%;
+    position: fixed;
+    bottom: 0px;
+    width: 80%;
+    height: 35px;
     display: flex;
-    background-color:white ;
-    
+    background-color:whitesmoke ;
+    align-items: center;
   }
  
   .message-input {
-    height: 50px;  
+    height: 30px;  
     margin-left: 20px;
-    border: none; /* Elimina el borde del input */
+    width: 70%;
+    border-radius: 8px;
+    border: none;
     box-shadow: none;
     outline: none;
     display: flex;
-    flex: 5;
-
+    flex: 1;
+    
   }
   .sendButton{
     display: flex;
     flex:0;
     margin: 0;
-    
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
   }
- 
+  .sendButton:hover {
+    box-shadow: none;
+  }
   /*Chat menssage*/
 
   .chat-bubble-container{
     display: flex;
     width: 100%;
+    height: fit-content;
     justify-content: flex-start;
     
   }
@@ -305,6 +346,7 @@
     margin-right: 10px;
   }
   .chat-bubble{
+    
     background: white;
     font-size: 0.5rem;
     width: fit-content;
@@ -334,23 +376,11 @@
 
  
 
-  .chat-content {
-    display: flex;
-    flex: 1;
-    
-  }
-  .mat-selection-list .mat-pseudo-checkbox {
-    display: none;
-    background-color: #000;
-  }
-
+  
+ 
 
   
-  
-  .spacer {
-    flex: 1;
-  }
-  
+ 
   
  
   
@@ -359,18 +389,3 @@
  
   
 
-
-  .mat-form-field {
-    width: 100%;
-  }
-  
-  .no-contact-selected {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 12px;
-    
-    color: #666;
-  }
-  
