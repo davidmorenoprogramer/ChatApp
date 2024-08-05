@@ -20,9 +20,8 @@
   .contactsAndMenu{
     
     height: 100%;
-    width: 20%;
-    min-width: 100px;
-    max-width: 200px;
+    width: 30%;
+    
     margin-top: 0px;
    
     
@@ -33,7 +32,7 @@
     
     position: relative;
     width: 100%;
-    height: 20px;
+    height: 60px;
     display: flex;
     flex-direction: row;
     background-color: #3f51b5;
@@ -51,21 +50,20 @@
     outline: none;
   }
   .apptitle{
-    font-size: 0.3rem; 
+    font-size: 16px; 
     display: flex;
     align-items: center;
     position: absolute;
-    left: 5px;
+    left: 20px;
     bottom: 0px;
     height: 100%;
     }
   .menuItemText{font-size: 10px;
 }
   .mat-menu-panel {
-    width: auto; 
-    max-width: 200px; 
-    min-width: 100px; 
-    max-height: 80vh; 
+    
+    min-width: 300px; /* Ancho mínimo */
+    max-width: 300px; 
     overflow-y: auto; 
     position: absolute; 
     right: 0;
@@ -78,11 +76,11 @@
     opacity: 1; 
   }
   .mat-menu-item {
-    padding: 8px 16px; 
+    padding: 4px 8px; 
     display: flex; 
     align-items: center;
     transition: background-color 0.3s ease; 
-    font-size: 10px;
+    font-size: 6px;
   }
 
   .mat-menu-item:hover {
@@ -111,12 +109,12 @@
     top: 1px;
     align-items: center;
     height: 100%;
-    width: 20px;
+    width: 50px;
     
   }
   .iconConfig{
     color: rgba(0, 0, 0, 0.7);
-    transform: scale(0.4);
+    
   }
   .buttonconfig {
     background: none;
@@ -124,25 +122,39 @@
     
   }
   mat-form-field{
-    height: 40px;
-  }
-  mat-autocomplete{
     height: 20px;
   }
-
+  mat-autocomplete{
+    height: 10px;
+  }
+ 
   /* #############################################*/
 /* buscador*/
-  
-  .search {
-    text-align: center;
-    flex-direction: column;
-    width: 80%;
-    
-    height: 10px;
-    font-size: 12px;
-    margin-top: 0px;
+  .search-container{
+    display: flex;
+    width: 100%;
+    height: 40px;
     align-items: center;
-    position: relative;
+    justify-content: center;
+  }
+  .search {
+      width: 100%;
+      text-align: center;
+      height: 90%;
+      border-radius: 25px;
+      border: 1px solid #d3d5e5;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+      background-color: white;
+      font-size: px;
+      color: #333;
+  }
+  
+  
+  .select-new-chat{
+    font-size: 16px;
+    max-height: 10px;
   }
 
   /* #############################################*/
@@ -150,35 +162,31 @@
   /* lista de chats activos*/
 
   .scrollcontactos{ 
-    margin-top: -25px;
+    margin-top: 0;
     overflow-y: hidden;
     height: 100%;
     width: 100%;
     overflow-y: scroll;
-    
   }
-  .scrollcontactos::-webkit-scrollbar {
-    
-  }
+  
 
   .listaContactos{
     padding: 0;
-    margin-top: 2px;
+    margin-top: 4px;
+    
     
   }
   .contact-item{
     position: relative;
-    
+    min-height: 80px;
     padding: 0;
     flex-direction: row;
-    border-bottom: 0.5px solid #ccc;
+    border-bottom: 2px solid #ccc;
     
     
   }
 
-  .contact-item:nth-child(n){
-    height: 25px;
-  }
+ 
   mat-list {
     padding: 0;
   }
@@ -186,16 +194,15 @@
   /* items dentro de la card de chats activos*/
   .avatar{
     
-    width: 20px;
-    margin-left: 2px;
+    width: 70px;
+    margin-left: 5px;
     align-items: center;
     text-align: center;
-    height: 20px;
+    height: 70px;
     border-radius: 50%;
   }
   /*datos dentro del chat*/
   .messageColum{
-    
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -210,31 +217,32 @@
     flex: 1;
     width: 100%;
     height: 100%;
-    margin-left: 3px;
+    margin-left: 20px;
   }
+
   .nameChat{
     
-    font-size: 0.3rem;
-    flex: 3;
-    margin-top: 6px;
+    font-size: 18px;
+    flex: 4;
+    margin-top: 0px;
     text-transform: uppercase;
     height: 10px;
     color: #555;
   }
+
   .dateChat{
-    font-size: 0.2rem;
+    font-size: 10px;
     align-items: end;
+    
     flex: 1;
-    position: absolute;
-    top: 0; /* Alinea el texto al borde superior del contenedor */
-    right:1px;
     color: rgba(0, 0, 0, 0.7);
     -webkit-user-drag: none;
   }
+
   .messageContact{
-    font-size: 0.3rem;;
+    font-size: 14px;
     color: rgba(0, 0, 0, 0.7);
-    margin-left: 3px;
+    margin-left: 20px;
     width: 100%;
     height: 20px;
     
@@ -244,30 +252,33 @@
 
   .chat-body {
     
-    top: 0;
     flex: 1;
     width: 100%;
     height: 100%;
     
   }
 
-  .chat-section{background-color: #ede2ed;}
+  .chat-section{
+    background-color: #ede2ed;
+  
+  }
    /*******header del chat de mensajes*******************/
+
+
   .chat-message-header{
     position:relative;
-    height: 20px;
+    height: 60px;
     width: 100%;
     display: flex;
     background-color:whitesmoke ;
     flex: 1;
-    
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
   .chat-header-name{
     
     color: rgba(0, 0, 0, 0.7);
-    font-size: 0.4rem;
+    font-size: 16px;
     width: 100%;
     height: 100%;
     align-items: center;
@@ -275,11 +286,10 @@
     margin-left: 40px;
   }
   .chat-area{
-    height: 80%;
+    height: 100%;
     background: #ede2ed;
     display: flex;
     flex: 1;
-    
     align-items:flex-start;
     overflow-y: scroll;
     flex-direction: column;
@@ -296,28 +306,33 @@
   .input{
     position: fixed;
     bottom: 0px;
-    width: 80%;
-    height: 35px;
+    width: 100%;
+    height: 70px;
     display: flex;
     background-color:whitesmoke ;
     align-items: center;
+    justify-content: center;
   }
  
   .message-input {
-    height: 30px;  
-    margin-left: 20px;
-    width: 70%;
-    border-radius: 8px;
+    height: 40px;  
+    border-radius: 25px;
     border: none;
+    margin-left: 20px;
+    
     box-shadow: none;
     outline: none;
     display: flex;
-    flex: 1;
+    flex: 2;
+    text-indent: 50px;
+  }
+  .message-input::placeholder{
+    padding-left: 5px;
     
   }
   .sendButton{
     display: flex;
-    flex:0;
+    flex:1;
     margin: 0;
     box-shadow: none;
     border: none;
@@ -334,6 +349,7 @@
     height: fit-content;
     justify-content: flex-start;
     
+    
   }
   .chat-bubble-container.sender {
     
@@ -343,28 +359,30 @@
   .chat-bubble-container.sender > .chat-bubble {
   
     background:rgb(230, 237, 223);
-    margin-right: 10px;
+    margin-right: 20px;
   }
   .chat-bubble{
     
     background: white;
-    font-size: 0.5rem;
+    font-size: 16px;
     width: fit-content;
     border-radius: 8px;
     position: relative;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 8px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 12px;
     padding-right: 100px;
-    margin-left: 10px;
-    margin-bottom: 16px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     color:rgba(0, 0, 0, 0.7)
   }
   .chat-date{
     position: absolute;
     bottom: 10px;
     right: 8px;
-    font-size: 0.3rem;
+    bottom: 0px;
+    font-size: 10px;
     color:rgba(0, 0, 0, 0.6)
   }
   

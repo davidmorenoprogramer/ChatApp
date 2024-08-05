@@ -12,19 +12,20 @@
                   <mat-icon class="icon">settings</mat-icon>
                   <span class="menuItemText">Settings</span>
               </button>
-            <button mat-menu-item (click)="Logout()">
-              <mat-icon class="icon">exit_to_app</mat-icon>
-              <span class="menuItemText">Logout</span>
-            </button>
+              <button mat-menu-item (click)="Logout()">
+                <mat-icon class="icon">exit_to_app</mat-icon>
+                <span class="menuItemText">Logout</span>
+              </button>
           </mat-menu>
         </div>
       </mat-toolbar>
        <!-- search -->
-      <mat-form-field class="search">
-        <input matInput placeholder="buscar constactos" [formControl]="searchControl" [matAutocomplete]="users"/>
-      </mat-form-field>
-      <mat-autocomplete #users="matAutocomplete">
-        <mat-option *ngFor="let user of users$ | async" (click)= "createChat(user)" >{{ user?.displayName }}</mat-option>
+      
+      <div class="search-container">
+        <input matInput placeholder="buscar constactos" class="search" [formControl]="searchControl" [matAutocomplete]="users"/>
+      </div>
+      <mat-autocomplete  #users="matAutocomplete">
+        <mat-option class="select-new-chat"  *ngFor="let user of users$ | async" (click)= "createChat(user)" >{{ user?.displayName }}</mat-option>
       </mat-autocomplete>
 
        <!-- Chats Activos-->
