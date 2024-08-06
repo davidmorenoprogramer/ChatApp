@@ -38,7 +38,7 @@
               <div class="messageColum">
                 <div class="chat-info">
                   <mat-card-title class="nameChat">{{ chat.chatName }}</mat-card-title>
-                  <mat-card-subtitle class="dateChat" >{{ "17/10/2024"}}</mat-card-subtitle>
+                  <mat-card-subtitle class="dateChat" >{{ chat.lastMessageDate | dateDisplay}}</mat-card-subtitle>
                 </div>
                 <p class="messageContact">{{ chat.lastMessage }}</p>
               </div>
@@ -54,15 +54,17 @@
       <div class="chat-body"  >
           <!-- header -->
           <div class="chat-message-header" *ngIf="selectedChat$ | async as selectedChat">
+            <img src="https://st2.depositphotos.com/3895623/5589/v/450/depositphotos_55896913-stock-illustration-usershirt.jpg" class="avatar" style="height: 60px; width: 60px;">
+              
             <h2 class="chat-header-name">{{selectedChat.chatName}}</h2>
           </div>
            <!-- chat area -->
-          <div class="chat-area">
-            <ng-container *ngIf="user$ | async as currentUser"> 
+          <div #chatContainer class="chat-area">
+            <ng-container  *ngIf="user$ | async as currentUser"> 
               <div *ngFor="let message of messages$ | async" class="chat-bubble-container" [ngClass]="{'sender': message.senderId === currentUser.uid}">
                 <div class="chat-bubble">
                   {{ message.text }}
-                  <span class="chat-date">17/08/2024</span>
+                  <span class="chat-date">{{message.sentDate| dateDisplay}} </span>
                 </div>
               </div>
             </ng-container>

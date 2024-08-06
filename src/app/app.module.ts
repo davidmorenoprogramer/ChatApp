@@ -24,17 +24,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
+import { DateDisplayPipe } from './pipes/date-display.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent,RegisterComponent, HomeComponent, LoginComponent
+    AppComponent,RegisterComponent, HomeComponent, LoginComponent, DateDisplayPipe
   ],
   imports: [
     BrowserModule,MatDividerModule,AngularFireModule,MatCardModule,MatButtonModule,AngularFirestoreModule,MatAutocompleteModule,BrowserAnimationsModule,MatMenuModule,MatListModule,MatIconModule,MatFormFieldModule,MatInputModule,MatToolbarModule,ReactiveFormsModule,FormsModule,MatDialogModule,AppRoutingModule,provideFirebaseApp(()=>initializeApp(environment.firebase)),
     provideAuth(()=>getAuth()),
     provideFirestore(()=>getFirestore())
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

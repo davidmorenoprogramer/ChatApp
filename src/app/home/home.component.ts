@@ -1,4 +1,4 @@
-import { Component ,ViewEncapsulation , OnInit } from '@angular/core';
+import { Component ,ViewEncapsulation ,AfterViewChecked, OnInit,ViewChild  } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
@@ -12,10 +12,9 @@ import { Message } from '../models/chat';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit{
-  
+export class HomeComponent   {
+  @ViewChild('chatContainer') private chatContainer!: ElementRef;
 
-  
   user$ = this.userService.CurrentUserProfile$;
   users$ = this.userService.AllUsers$
   myChats$ = this.chatService.myChats$
@@ -24,21 +23,17 @@ export class HomeComponent implements OnInit{
   messageControl = new FormControl('')
  
 
-  selectedChat$ = combineLatest([
-    this.chatListControl.valueChanges,
-    this.myChats$
-  ]).pipe(map(([value,chats]) => chats.find((c) => c.id === value[0])))
 
   
   messages$ = this.chatListControl.valueChanges.pipe(map(value => value[0])
-,switchMap(chatId => this.chatService.getChatsMessages$(chatId)))
+,switchMap(chatId => this.chatService.getChatsMessages$(chatId)),tap(()=>{this.scrollToBottom()}))
  
  
-  ngOnInit(): void {
-    combineLatest([this.user$, this.users$])
-    
-    
-  }
+selectedChat$ = combineLatest([
+  this.chatListControl.valueChanges,
+  this.myChats$
+]).pipe(map(([value,chats]) => chats.find((c) => c.id === value[0])),tap(()=>{this.scrollToBottom()}),)
+ 
 
   constructor(private el: ElementRef, private renderer: Renderer2, private chatService: ChatsService, private userService:UserService,private router:Router){}
   Logout(){
@@ -50,7 +45,15 @@ export class HomeComponent implements OnInit{
     this.chatService.createNewChat(otherUser).subscribe();
     
   }
-
+  scrollToBottom(): void {
+    
+    setTimeout(() => {
+      const container = this.chatContainer.nativeElement;
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }, 0);
+  }
   
   sendMessage(){
     const message = this.messageControl.value;
@@ -59,8 +62,8 @@ export class HomeComponent implements OnInit{
     if (message && selectedChatId){
       
       this.chatService.addChatMessage(selectedChatId,message).subscribe()
-      
       this.messageControl.setValue('');
+      
     }
 
     

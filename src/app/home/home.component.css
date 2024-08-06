@@ -163,7 +163,6 @@
 
   .scrollcontactos{ 
     margin-top: 0;
-    overflow-y: hidden;
     height: 100%;
     width: 100%;
     overflow-y: scroll;
@@ -178,7 +177,7 @@
   }
   .contact-item{
     position: relative;
-    min-height: 80px;
+    min-height: 70px;
     padding: 0;
     flex-direction: row;
     border-bottom: 2px solid #ccc;
@@ -225,7 +224,7 @@
     font-size: 18px;
     flex: 4;
     margin-top: 0px;
-    text-transform: uppercase;
+    
     height: 10px;
     color: #555;
   }
@@ -234,7 +233,7 @@
     font-size: 10px;
     align-items: end;
     
-    flex: 1;
+    flex: 2;
     color: rgba(0, 0, 0, 0.7);
     -webkit-user-drag: none;
   }
@@ -252,15 +251,20 @@
 
   .chat-body {
     
-    flex: 1;
-    width: 100%;
-    height: 100%;
     
+    display: flex;
+    flex-direction: column;
+    
+    overflow-y: auto;
+    height: 100%;
+    padding: 0;
   }
 
   .chat-section{
     background-color: #ede2ed;
-  
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
    /*******header del chat de mensajes*******************/
 
@@ -271,28 +275,28 @@
     width: 100%;
     display: flex;
     background-color:whitesmoke ;
-    flex: 1;
+    
     justify-content: center;
     align-items: center;
   }
   .chat-header-name{
     
     color: rgba(0, 0, 0, 0.7);
-    font-size: 16px;
+    font-size: 18px;
     width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content:center;
-    margin-left: 40px;
+    height: 10px;
+    
+    margin-left: 10px;
   }
   .chat-area{
-    height: 100%;
+    
     background: #ede2ed;
-    display: flex;
-    flex: 1;
-    align-items:flex-start;
-    overflow-y: scroll;
+   
     flex-direction: column;
+    overflow-y: auto;
+    height: 100%;
+    flex: 1;
+    width: 100%;
     
   }
   .chat-window{
@@ -304,7 +308,7 @@
  
   /*footer chats*/
   .input{
-    position: fixed;
+    padding: 0; 
     bottom: 0px;
     width: 100%;
     height: 70px;
@@ -332,7 +336,7 @@
   }
   .sendButton{
     display: flex;
-    flex:1;
+    flex:0;
     margin: 0;
     box-shadow: none;
     border: none;
@@ -342,13 +346,14 @@
     box-shadow: none;
   }
   /*Chat menssage*/
-
+ 
   .chat-bubble-container{
     display: flex;
     width: 100%;
     height: fit-content;
     justify-content: flex-start;
     
+    margin-bottom: 0px;
     
   }
   .chat-bubble-container.sender {
@@ -368,7 +373,7 @@
     width: fit-content;
     border-radius: 8px;
     position: relative;
-    padding-top: 10px;
+    padding-top: 0px;
     padding-bottom: 20px;
     padding-left: 12px;
     padding-right: 100px;
