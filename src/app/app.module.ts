@@ -26,15 +26,24 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { DateDisplayPipe } from './pipes/date-display.pipe';
 import { DatePipe } from '@angular/common';
+import { ConfigComponent } from './config/config/config.component';
+import { ImageControlComponent } from './config/image-control/image-control.component';
+import { DialogCropImageComponent } from './dialog/dialog-crop-image/dialog-crop-image.component';
+import { provideStorage,Storage } from '@angular/fire/storage';
+import { getStorage } from 'firebase/storage';
 
 @NgModule({
   declarations: [
-    AppComponent,RegisterComponent, HomeComponent, LoginComponent, DateDisplayPipe
+    AppComponent,RegisterComponent, HomeComponent, LoginComponent, DateDisplayPipe, ConfigComponent, ImageControlComponent,
   ],
   imports: [
-    BrowserModule,MatDividerModule,AngularFireModule,MatCardModule,MatButtonModule,AngularFirestoreModule,MatAutocompleteModule,BrowserAnimationsModule,MatMenuModule,MatListModule,MatIconModule,MatFormFieldModule,MatInputModule,MatToolbarModule,ReactiveFormsModule,FormsModule,MatDialogModule,AppRoutingModule,provideFirebaseApp(()=>initializeApp(environment.firebase)),
+    BrowserModule,MatDividerModule,AngularFireModule,MatCardModule,MatButtonModule,AngularFirestoreModule,MatAutocompleteModule,BrowserAnimationsModule,MatMenuModule,MatListModule,MatIconModule,MatFormFieldModule,MatInputModule,MatToolbarModule,ReactiveFormsModule,FormsModule,MatDialogModule,AppRoutingModule,
+    provideFirebaseApp(()=>initializeApp(environment.firebase)),
     provideAuth(()=>getAuth()),
-    provideFirestore(()=>getFirestore())
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirestore(()=>getFirestore()),
+    provideStorage(()=>getStorage())
+    
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

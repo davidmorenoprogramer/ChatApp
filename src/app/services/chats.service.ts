@@ -28,6 +28,23 @@ get myChats$(): Observable<Chat[]>{
   )
 }
 
+isExistingChat(otherUserId:string): Observable<string | null>{
+  return this.myChats$.pipe(
+    take(1),
+    map(chats =>{
+      for(let i=0;i < chats.length; i++){
+        if (chats[i].userIds.includes(otherUserId)){
+          
+          return chats[i].id
+        
+        }
+      }
+      return null
+    })
+  )
+
+}
+
 addChatMessage(chatId:string, message:string):Observable<any>{
     const ref = collection(this.firestore,'chats',chatId,'messages');
     const chatRef = doc(this.firestore,'chats',chatId);
@@ -56,8 +73,9 @@ getChatsMessages$(chatId:string):Observable<Message[]>{
 addChatNameAndPic(currentUserId:string,chats: Chat[]):Chat[]{
   chats.forEach(chat =>{
     const otherIndex = chat.userIds.indexOf(currentUserId)=== 0 ? 1 : 0 // determina en que posicion está el usuario actual.
-    const {displayName} = chat.users[otherIndex];
-    chat.chatName = displayName
+    const {displayName, photoUrl} = chat.users[otherIndex];
+    chat.chatName = displayName;
+    chat.chatPic = photoUrl;
   })
   return chats
 }
@@ -68,7 +86,8 @@ createNewChat(otherUser:ProfileUser):Observable<string> {
       take(1),
       concatMap(user => addDoc(ref,{
         userIds:[user?.uid, otherUser.uid],
-        users:[{displayName:user?.displayName ?? ''},{displayName:otherUser?.displayName ?? ''}]
+        users:[{displayName:user?.displayName ?? '', photoUrl:user?.photoUrl ?? ''}
+          ,{displayName:otherUser?.displayName ?? '', photoUrl:user?.photoUrl ?? ''}]
       })),map(ref =>ref.id)
     )
   }

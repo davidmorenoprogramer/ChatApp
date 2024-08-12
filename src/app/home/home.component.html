@@ -5,10 +5,10 @@
         <span class="apptitle">Chat App</span>
         <div class="logout-button" >
           <button class="buttonconfig" [matMenuTriggerFor]="menu">
-            <mat-icon class="iconConfig">more_vert</mat-icon>
+            <mat-icon  class="iconConfig">more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="mat-menu-panel">
-              <button mat-menu-item>
+              <button mat-menu-item (click)="config()">
                   <mat-icon class="icon">settings</mat-icon>
                   <span class="menuItemText">Settings</span>
               </button>
@@ -34,7 +34,7 @@
           <mat-divider></mat-divider>
           <mat-list-option *ngFor="let chat of myChats$ | async" class="contact-item" [value]="chat.id">
             <div style="display: flex; flex-direction: row;  height: 100%; width: 100%;  align-items: center;" >
-              <img src="https://st2.depositphotos.com/3895623/5589/v/450/depositphotos_55896913-stock-illustration-usershirt.jpg" class="avatar">
+              <img [src]="" class="avatar">
               <div class="messageColum">
                 <div class="chat-info">
                   <mat-card-title class="nameChat">{{ chat.chatName }}</mat-card-title>
@@ -54,7 +54,7 @@
       <div class="chat-body"  >
           <!-- header -->
           <div class="chat-message-header" *ngIf="selectedChat$ | async as selectedChat">
-            <img src="https://st2.depositphotos.com/3895623/5589/v/450/depositphotos_55896913-stock-illustration-usershirt.jpg" class="avatar" style="height: 60px; width: 60px;">
+            <img [src]="" class="avatar" style="height: 60px; width: 60px;">
               
             <h2 class="chat-header-name">{{selectedChat.chatName}}</h2>
           </div>

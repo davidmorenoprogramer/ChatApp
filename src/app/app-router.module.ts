@@ -10,6 +10,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LoginComponent } from "./auth/login/login.component";
 import { HomeComponent } from "./home/home.component";
 import { canActivate, redirectUnauthorizedTo } from "@angular/fire/auth-guard"; // para meter un guard
+import { ConfigComponent } from "./config/config/config.component";
 
 export const routes: Routes=[
     {
@@ -27,11 +28,14 @@ export const routes: Routes=[
     {
         path:'home'
         ,component:HomeComponent, 
-        ...canActivate(()=> redirectUnauthorizedTo(['/login']) //si no está autorizado lo manda a login
-    
-    )
+        ...canActivate(()=> redirectUnauthorizedTo(['/login']))
+        
+        //si no está autorizado lo manda a login
+    },
+    {
+         path:'home/config',
+         component:ConfigComponent
     }
-    
 ]
 @NgModule({
     declarations: [],

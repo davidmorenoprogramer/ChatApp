@@ -1,0 +1,10 @@
+.container-image{
+    padding: 24px;
+}
+img{border-radius: 5px;}
+div{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+

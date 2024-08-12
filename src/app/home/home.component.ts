@@ -39,10 +39,25 @@ selectedChat$ = combineLatest([
   Logout(){
     this.userService.logout().then(()=>{this.router.navigate(['/login'])})
   }
-
+  config(){
+    this.router.navigate(['/home/config'])
+  }
  
   createChat(otherUser:ProfileUser){
-    this.chatService.createNewChat(otherUser).subscribe();
+    this.chatService.isExistingChat(otherUser?.uid).pipe(
+      switchMap(chatId => {
+        if (chatId){
+          
+          return of(chatId)
+        }
+        else{
+          
+          return this.chatService.createNewChat(otherUser)
+        }
+      })
+    ).subscribe(chatId => {
+      this.chatListControl.setValue([chatId])
+    })
     
   }
   scrollToBottom(): void {
