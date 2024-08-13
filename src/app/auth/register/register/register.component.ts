@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-
+import { take } from 'rxjs';
+import{Storage} from '@angular/fire/storage'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { PhotoService } from 'src/app/services/photo.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,8 +16,10 @@ import { switchMap } from 'rxjs';
 export class RegisterComponent implements OnInit{
  
   formReg:FormGroup;
-
-  constructor(private userService:UserService, private router: Router){
+  uid_actual_user:any
+  imagen:any
+  storage = inject(Storage)
+  constructor(private userService:UserService, private router: Router, private photoService: PhotoService){
     this.formReg = new FormGroup({
       name: new FormControl(''),
       email: new FormControl(''),
@@ -41,19 +46,31 @@ export class RegisterComponent implements OnInit{
     
     this.userService.register(this.getName(),this.getEmail(),this.getPass())
     .pipe(
-      switchMap(({user:{uid}}) => this.userService.addNewUser({uid,email,displayName: name}))
-
+      switchMap(({user:{uid}}) => { 
+        this.uid_actual_user = uid;
+        return this.userService.addNewUser({uid,email,displayName: name})
+      }
+        ),
+     
     )
-    .subscribe({next:(result)=> {this.router.navigate(['/home'])}})
+    .subscribe({next:(result)=> {
+      this.uploadImage(this.uid_actual_user)
+      this.router.navigate(['/home'])
+    
+    }})
     
       
-   
-    
-
   }
-  goToLogin(){this.router.navigate(['/login'])}
-
+  goToLogin(){
+    
+    this.router.navigate(['/login'])
   
+  }
+
+  uploadImage(uidUser:string){
+    this.photoService.withoutPhoto(uidUser)
+    
+  }
 
 
 

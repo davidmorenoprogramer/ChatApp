@@ -63,6 +63,7 @@ export class UserService {
   
 
   register(name:string,email:string, password:string){
+
     return from(createUserWithEmailAndPassword(this.auth, email, password))
     
       /*return createUserWithEmailAndPassword(this.auth,email,password)*/

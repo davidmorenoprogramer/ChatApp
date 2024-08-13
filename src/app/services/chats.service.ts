@@ -72,8 +72,9 @@ getChatsMessages$(chatId:string):Observable<Message[]>{
 
 addChatNameAndPic(currentUserId:string,chats: Chat[]):Chat[]{
   chats.forEach(chat =>{
-    const otherIndex = chat.userIds.indexOf(currentUserId)=== 0 ? 1 : 0 // determina en que posicion está el usuario actual.
-    const {displayName, photoUrl} = chat.users[otherIndex];
+    const otherIndex = chat.userIds.indexOf(currentUserId) === 0 ? 1 : 0 
+    // determina en que posicion está el usuario actual.
+    const {displayName,photoUrl} = chat.users[otherIndex];
     chat.chatName = displayName;
     chat.chatPic = photoUrl;
   })
@@ -86,8 +87,14 @@ createNewChat(otherUser:ProfileUser):Observable<string> {
       take(1),
       concatMap(user => addDoc(ref,{
         userIds:[user?.uid, otherUser.uid],
-        users:[{displayName:user?.displayName ?? '', photoUrl:user?.photoUrl ?? ''}
-          ,{displayName:otherUser?.displayName ?? '', photoUrl:user?.photoUrl ?? ''}]
+        users:[
+          {
+            displayName:user?.displayName ?? '', 
+            photoUrl:user?.photoUrl ?? ''}
+          ,{
+            displayName:otherUser?.displayName ?? '', 
+            photoUrl:otherUser?.photoUrl ?? ''
+          }]
       })),map(ref =>ref.id)
     )
   }

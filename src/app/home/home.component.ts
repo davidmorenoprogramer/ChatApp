@@ -23,15 +23,16 @@ export class HomeComponent   {
   messageControl = new FormControl('')
  
 
-
-  
-  messages$ = this.chatListControl.valueChanges.pipe(map(value => value[0])
+messages$ = this.chatListControl.valueChanges.pipe(map(value => value[0])
 ,switchMap(chatId => this.chatService.getChatsMessages$(chatId)),tap(()=>{this.scrollToBottom()}))
  
  
 selectedChat$ = combineLatest([
   this.chatListControl.valueChanges,
   this.myChats$
+
+
+
 ]).pipe(map(([value,chats]) => chats.find((c) => c.id === value[0])),tap(()=>{this.scrollToBottom()}),)
  
 

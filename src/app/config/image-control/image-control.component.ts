@@ -2,8 +2,8 @@
 import { Component, computed, Input, inject,signal, Output, EventEmitter, effect } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filter,take } from 'rxjs';
-import { CropperDialogResult, DialogCropImageComponent } from 'src/app/dialog/dialog-crop-image/dialog-crop-image.component';
-import { ProfileUser } from 'src/app/models/user-profile';
+import { DialogCropImageComponent } from 'src/app/dialog/dialog-crop-image/dialog-crop-image.component';
+import { PhotoService } from 'src/app/services/photo.service';
 import { UserService } from 'src/app/services/user.service';
 import{Storage} from '@angular/fire/storage'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -25,7 +25,7 @@ export class ImageControlComponent {
   }
 
   @Output() imageReady = new EventEmitter<string>();
-  constructor(private userService: UserService){
+  constructor(private userService: UserService, private photoService: PhotoService){
     effect(()=>{
       if (this.cropperImageUrl()){
         this.imageReady.emit(this.cropperImageUrl())
@@ -34,6 +34,7 @@ export class ImageControlComponent {
   }
   placeholder = computed(()=>`https://placehold.co/${this.imageWidth()}x${this.imageHeight()}`);
 
+  resultBlob : any
   dialog = inject(MatDialog)
   cropperImageUrl = signal<string | undefined>(undefined)
 
@@ -52,25 +53,18 @@ export class ImageControlComponent {
   storage = inject(Storage)
 
   async uploadImage(blob:Blob){
-    const storageRef = ref(this.storage,this.imagePath());
-    const uploadTask = await uploadBytes(storageRef,blob)
-    const downloadUrl = await getDownloadURL(uploadTask.ref)
+
+    this.photoService.uploadImage(blob,this.imagePath())
+    const downloadUrl: string = await this.photoService.downloadUrl(this.imagePath())
     this.cropperImageUrl.set(downloadUrl)
     
   }
 
 
   saveProfile(){
-    if(this.cropperImageUrl()){
-
-      /*if (this.userService.CurrentUserProfile$)
-        this.userService.CurrentUserProfile$.pipe(
-          take(1) // Toma solo un valor del observable y luego completa
-        ).subscribe((UsuarioActual: ProfileUser | null) => {
-          if (UsuarioActual) {
-            UsuarioActual.photoUrl = this.cropperImage()?.imageUrl
-            this.userService.UpdateUser(UsuarioActual);
-          }});*/
+    if(this.resultBlob){
+      this.uploadImage(this.resultBlob)
+      
         
     }
 
@@ -86,8 +80,8 @@ export class ImageControlComponent {
       });
 
       dialogRef.afterClosed().pipe(filter(result => !!result)).subscribe((result)=>{
-        
-        this.uploadImage(result.blob)
+        this.resultBlob = result.blob
+       
       })
 
 

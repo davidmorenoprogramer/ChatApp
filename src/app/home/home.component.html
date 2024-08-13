@@ -34,7 +34,7 @@
           <mat-divider></mat-divider>
           <mat-list-option *ngFor="let chat of myChats$ | async" class="contact-item" [value]="chat.id">
             <div style="display: flex; flex-direction: row;  height: 100%; width: 100%;  align-items: center;" >
-              <img [src]="" class="avatar">
+              <img [src]="chat.chatPic" class="avatar">
               <div class="messageColum">
                 <div class="chat-info">
                   <mat-card-title class="nameChat">{{ chat.chatName }}</mat-card-title>
@@ -54,7 +54,7 @@
       <div class="chat-body"  >
           <!-- header -->
           <div class="chat-message-header" *ngIf="selectedChat$ | async as selectedChat">
-            <img [src]="" class="avatar" style="height: 60px; width: 60px;">
+            <img [src]="selectedChat.chatPic" class="avatar" style="height: 60px; width: 60px;">
               
             <h2 class="chat-header-name">{{selectedChat.chatName}}</h2>
           </div>
